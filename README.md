@@ -6,4 +6,9 @@ this project simulate competitive information diffusion on Dynamic social networ
 this function create the watts storage graph.<br>
 
 <b>make.friendship</b><br>
-this function run Fermi function and based on create new friendship in social network
+this function run Fermi function and based on create new friendship in social network.<br>
+
+<b>setDiffuser</b><br>
+this function sets seed nodes in the social network. 
+
+
