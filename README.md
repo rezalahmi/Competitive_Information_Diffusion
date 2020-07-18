@@ -9,6 +9,9 @@ this function create the watts storage graph.<br>
 this function run Fermi function and based on create new friendship in social network.<br>
 
 <b>setDiffuser</b><br>
-this function sets seed nodes in the social network. 
+this function sets seed nodes in the social network.<br>
+
+<b>set action probability vector</b><br>
+this function set and initialize the action probability vector of nodes in social network.<br>
 
 
