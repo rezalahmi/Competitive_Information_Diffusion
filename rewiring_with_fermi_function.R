@@ -46,3 +46,6 @@ make_friendship<-function(net,i){
   return(net)
 }
 ##########################################
+rewiring<-function(net){
+  return(net)
+}

@@ -3,7 +3,7 @@
     "path": "D:/Simulator_these_phase_1/Competitive_Information_Diffusion/simulator_luncher.R",
     "project_path": "simulator_luncher.R",
     "type": "r_source",
-    "hash": "50989767",
+    "hash": "1721868267",
     "contents": "",
     "dirty": false,
     "created": 1595131139033.0,
@@ -11,15 +11,15 @@
     "relative_order": 1,
     "properties": {
         "tempName": "Untitled1",
-        "cursorPosition": "10,49",
+        "cursorPosition": "11,1",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1595132102,
+    "lastKnownWriteTime": 1595134410,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1595132102346,
+    "last_content_update": 1595134410190,
     "read_only": false,
     "read_only_alternatives": []
 }
