@@ -7,7 +7,7 @@ find_oldFriend_based_fermi<-function(net,i){
   #return the disagree node with smallest payoff(degree)
   if(length(dissagree_neighbors_i)==0)
     return(NULL)
-  return(list_of_neighbors_i[which.min(degree(net,dissagree_neighbors_i))])
+  return(as_ids(list_of_neighbors_i[which.min(degree(net,dissagree_neighbors_i))]))
 }
 #####################################
 
