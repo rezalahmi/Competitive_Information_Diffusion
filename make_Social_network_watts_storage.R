@@ -3,6 +3,8 @@ make.random.social.network<-function(node){
   set.seed(1000*runif(1))
   net<-watts.strogatz.game(3,node,1,0.5)
   net<-simplify(net)
+  #####################################################
+  #properties of node
   #we had two social institute in social network, Red and Blue
   #by default all node are uninformed and we showed this with white color
   V(net)$color<-rep("white",node)
@@ -15,6 +17,16 @@ make.random.social.network<-function(node){
   V(net)$penalty<-0
   #we had two type of node, seed and uninformed nodes
   V(net)$type<-0
+  ######################################################################
+  #for report the condition of diffusion we define some properties for node
+  #penalty number received by the node for each action
+  V(net)$count_penalty_red_action<-0
+  V(net)$count_penalty_white_action<-0
+  V(net)$count_penalty_blue_action<-0
+  #average penalty received by the node in simulation
+  V(net)$average_penalty_red_action<-0
+  V(net)$average_penalty_white_action<-0
+  V(net)$average_penalty_blue_action<-0
   return(net)
 }#make social network
 ########################################
