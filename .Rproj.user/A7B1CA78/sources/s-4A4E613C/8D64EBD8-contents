@@ -1,7 +1,7 @@
 report_diffusion_condition<-function(net,number_of_repeat){
   #this function create data frame and export that into csv file
   report<- data.frame(
-    node_id = 1:length(V(net)),
+    node_id = 1:vcount(net),
     action_prob_red = V(net)$action_prob_red,
     action_prob_blue = V(net)$action_prob_blue,
     action_prob_white = V(net)$action_prob_white,
