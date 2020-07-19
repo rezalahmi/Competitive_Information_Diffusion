@@ -14,21 +14,21 @@ find_oldFriend_based_fermi<-function(net,i){
 #####################################
 find_newFriend_based_fermi<-function(net,i){
   ###fermi function=1/(1+exp(-beta(pjj-pj)))
-  ###beta = 2
+  ###beta = 1
   #assign all node 0, for value of fermi function
   result<-rep(0,vcount(net))
   #find candidate node between neighbors of node i
   pj<-find_oldFriend_based_fermi(net,i)
-  if(pj==-1)
+  if(is.null(pj))
     return(NULL)
   #calculate the fermi value for all node who agree with i or had white color
-  for(j in V(net)[color==V(net)[i]$color | color=="white"]){
-    if(j!=i){
-      pjj<-degree(net,j)
-      result[j]<-1/(1+exp(-2*(pjj-pj)))
-    }
-  }
-  return(which.max(result))
+  agreeNode<-V(net)[color==V(net)[i]$color | color=="white"]
+  pjj<-degree(net,agreeNode)
+  fermi<-1/(1+exp(-1*(pjj-pj)))
+  fermi<-cumsum(fermi)
+  fermi<-fermi/fermi[vcount(net)]
+  newFriend<-length(fermi[fermi<runif(1)])
+  return(newFriend)
 }
 #########################################
 
@@ -47,5 +47,7 @@ make_friendship<-function(net,i){
 }
 ##########################################
 rewiring<-function(net){
+  for(i in V(net)[type==0])
+    net<-make_friendship(net,i)
   return(net)
 }
