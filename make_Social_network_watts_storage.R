@@ -23,10 +23,8 @@ make.random.social.network<-function(node){
   V(net)$count_penalty_red_action<-0
   V(net)$count_penalty_white_action<-0
   V(net)$count_penalty_blue_action<-0
-  #average penalty received by the node in simulation
-  V(net)$average_penalty_red_action<-0
-  V(net)$average_penalty_white_action<-0
-  V(net)$average_penalty_blue_action<-0
+
+
   return(net)
 }#make social network
 ########################################
