@@ -1,5 +1,5 @@
 set_Action_prob<-function(net){
-  #this function initialize the action probility vector of node
+  #this function initialize the action probability vector of node
   for(i in V(net)[type==0]){
     red_count<-0
     blue_count<-0
