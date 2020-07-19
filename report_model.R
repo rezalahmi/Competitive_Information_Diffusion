@@ -13,5 +13,5 @@ report_diffusion_condition<-function(net,number_of_repeat){
     average_penalty_recieved_by_white = V(net)$average_penalty_white_action/number_of_repeat,
     average_penalty_recieved_by_blue = V(net)$average_penalty_blue_action/number_of_repeat
   )
-  write.csv(report,"C:\\report",row.names = FALSE)
+  write.csv(report,"C:\\report\\diffusion_report.csv",row.names = FALSE)
 }
