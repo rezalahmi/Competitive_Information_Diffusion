@@ -23,6 +23,9 @@ make.random.social.network<-function(node){
   V(net)$count_penalty_red_action<-0
   V(net)$count_penalty_white_action<-0
   V(net)$count_penalty_blue_action<-0
+  V(net)$average_penalty_recieved_by_red<-0
+  V(net)$average_penalty_recieved_by_blue<-0
+  V(net)$average_penalty_recieved_by_white<-0
 
 
   return(net)

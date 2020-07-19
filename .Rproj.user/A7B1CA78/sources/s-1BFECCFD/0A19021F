@@ -3,22 +3,22 @@
     "path": "D:/Simulator_these_phase_1/Competitive_Information_Diffusion/make_Social_network_watts_storage.R",
     "project_path": "make_Social_network_watts_storage.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1329966982",
     "contents": "",
     "dirty": false,
     "created": 1595131199046.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
-        "cursorPosition": "22,33",
-        "scrollLine": "0"
+        "cursorPosition": "27,45",
+        "scrollLine": "12"
     },
     "folds": "",
-    "lastKnownWriteTime": 1595130778,
+    "lastKnownWriteTime": 1595167909,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1595130778,
+    "last_content_update": 1595167909265,
     "read_only": false,
     "read_only_alternatives": []
 }
