@@ -47,7 +47,7 @@ make_friendship<-function(net,i){
 }
 ##########################################
 rewiring<-function(net){
-  for(i in V(net)[type==0])
+  for(i in V(net))
     net<-make_friendship(net,i)
   return(net)
 }

@@ -35,7 +35,7 @@ action_prob_calculator<-function(net,a){
       }
       if(V(net)[i]$color=="white"){
         V(net)$count_penalty_white_action<-V(net)$count_penalty_white_action + 1
-        p3<-(1-a)+p3
+        p3<-(1-a)*p3
         p1<-a/2+(1-a)*p1
         p2<-a/2+(1-a)*p2
       }
