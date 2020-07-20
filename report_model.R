@@ -9,9 +9,9 @@ report_diffusion_condition<-function(net,number_of_repeat){
     count_penalty_red_action = V(net)$count_penalty_red_action,
     count_penalty_white_action = V(net)$count_penalty_white_action,
     count_penalty_blue_action = V(net)$count_penalty_blue_action,
-    average_penalty_recieved_by_red = V(net)$average_penalty_recieved_by_red/number_of_repeat,
-    average_penalty_recieved_by_white = V(net)$average_penalty_recieved_by_white/number_of_repeat,
-    average_penalty_recieved_by_blue = V(net)$average_penalty_recieved_by_blue/number_of_repeat
+    average_penalty_recieved_by_red = V(net)$count_penalty_red_action/number_of_repeat,
+    average_penalty_recieved_by_white = V(net)$count_penalty_white_action/number_of_repeat,
+    average_penalty_recieved_by_blue = V(net)$count_penalty_blue_action/number_of_repeat
   )
   write.csv(report,"C:\\report\\diffusion_report.csv",row.names = FALSE)
 }
