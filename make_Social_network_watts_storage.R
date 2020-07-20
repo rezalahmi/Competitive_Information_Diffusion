@@ -31,7 +31,7 @@ make.random.social.network<-function(node){
   
   V(net)$mean_penalty<-c(0,0,0)
     
-  
+  V(net)$action_prob<-c(0,0,0)
 
 
   return(net)
