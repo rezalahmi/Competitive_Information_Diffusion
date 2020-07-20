@@ -5,17 +5,17 @@ action_prob_calculator<-function(net,a){
     p3<-V(net)[i]$action_prob_white
     if(V(net)[i]$penalty==0){
       if(V(net)[i]$color=="red"){
-        p1<-p1+(1-a)*p1
+        p1<-p1+a*(1-p1)
         p2<-(1-a)*p2
         p3<-(1-a)*p3
       }
       if(V(net)[i]$color=="white"){
-        p3<-p3+(1-a)*p3
+        p3<-p3+(1-p3)*a
         p1<-(1-a)*p1
         p2<-(1-a)*p2
       }
       if(V(net)[i]$color=="blue"){
-        p2<-p2+(1-a)*p2
+        p2<-p2+(1-p2)*a
         p1<-(1-a)*p1
         p3<-(1-a)*p3
       }

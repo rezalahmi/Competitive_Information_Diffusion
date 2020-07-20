@@ -1,20 +1,20 @@
 set.diffuser<-function(net,seed.number){
   set.seed(1000*runif(1))
-  red.seed.node<-sample(V(net),seed.number)
-  V(net)[red.seed.node]$color<-"red"
-  V(net)[red.seed.node]$action_prob_red<-1
-  V(net)[red.seed.node]$action_prob_white<-0
-  V(net)[red.seed.node]$action_prob_blue<-0
-  V(net)[red.seed.node]$type<-1
-  set.seed(1000*runif(1))
-  blue.seed.node<-sample(V(net),seed.number)
-  while(!all(red.seed.node,blue.seed.node)){
-    blue.seed.node<-sample(V(net),seed.number)
-  }
-  V(net)[blue.seed.node]$color<-"blue"
-  V(net)[blue.seed.node]$action_prob_blue<-1
-  V(net)[blue.seed.node]$action_prob_white<-0
-  V(net)[blue.seed.node]$action_prob_red<-0
-  V(net)[blue.seed.node]$type<-1
+  seed.node<-sample(V(net),seed.number*2)
+  red.seed<-seed.node[1:seed.number]
+  l<-seed.number+1
+  u<-seed.number*2
+  blue.seed<-seed.node[l:u]
+  V(net)[red.seed]$color<-"red"
+  V(net)[red.seed]$action_prob_red<-1
+  V(net)[red.seed]$action_prob_white<-0
+  V(net)[red.seed]$action_prob_blue<-0
+  V(net)[red.seed]$type<-1
+  
+  V(net)[blue.seed]$color<-"blue"
+  V(net)[blue.seed]$action_prob_blue<-1
+  V(net)[blue.seed]$action_prob_white<-0
+  V(net)[blue.seed]$action_prob_red<-0
+  V(net)[blue.seed]$type<-1
   return(net)
 }
