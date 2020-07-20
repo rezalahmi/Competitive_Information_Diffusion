@@ -11,7 +11,7 @@ mean_penalty<-function(){
   for(i in V(net)[type==0]){
     N<-length(neighbors(net,i))
     for(x in 0:N/2){
-      V(net)[i]$mean_penalty[1]<-V(net)[i]$mean_penalty[1]+choose(N,x)*V(net)[i]$mean_probability[1]^x*(1-V(net)[i]$mean_probability[1])^(N-x)
+      V(net)[i]$mean_penalty<-V(net)[i]$mean_penalty+choose(N,x)*V(net)[i]$mean_probability^x*(1-V(net)[i]$mean_probability)^(N-x)
     }
   }
   return(net)
