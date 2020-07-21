@@ -27,13 +27,14 @@ make.random.social.network<-function(node){
   V(net)$average_penalty_recieved_by_blue<-0
   V(net)$average_penalty_recieved_by_white<-0
   #####################################################################
-  V(net)$mean_probability<-c(0,0,0)
+  V(net)$mean_probability_red<-0
+  V(net)$mean_probability_blue<-0
+  V(net)$mean_probability_white<-0
   
-  V(net)$mean_penalty<-c(0,0,0)
-    
-  V(net)$action_prob<-c(0,0,0)
-
-
+  V(net)$mean_penalty_red<-0
+  V(net)$mean_penalty_blue<-0
+  V(net)$mean_penalty_white<-0
+  #########################################################
   return(net)
 }#make social network
 ########################################
