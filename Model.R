@@ -19,14 +19,17 @@ mean_penalty<-function(chain){
   return(chain)
 }
 ################################################
-markov_chain<-function(chain,alpha){
+markov_chain<-function(chain){
   for(i in V(chain)[type==0]){
     c1<-V(chain)[i]$mean_penalty_red
     c2<-V(chain)[i]$mean_penalty_blue
     c3<-V(chain)[i]$mean_penalty_white
-    V(chain)[i]$action_prob_red<-(1/c1)/(1/c1+1/c2+1/c3)
-    V(chain)[i]$action_prob_blue<-(1/c2)/(1/c1+1/c2+1/c3)
-    V(chain)[i]$action_prob_white<-(1/c3)/(1/c1+1/c2+1/c3)
+    if(c1==0){V(chain)[i]$action_prob_red<-1}
+    else{V(chain)[i]$action_prob_red<-(1/c1)/(1/c1+1/c2+1/c3)}
+    if(c2==0){V(chain)[i]$action_prob_blue<-1}
+    else{V(chain)[i]$action_prob_blue<-(1/c2)/(1/c1+1/c2+1/c3)}
+    if(c3==0){V(chain)[i]$action_prob_white<-1}
+    else{V(chain)[i]$action_prob_white<-(1/c3)/(1/c1+1/c2+1/c3)}
   }
   
   return(chain)
@@ -67,13 +70,20 @@ report_markov_chain<-function(chain){
   write.csv(report,"C:\\report\\model_report.csv",row.names = FALSE)
 }
 ##################################################
-lunch_model<-function(chain,number_of_repeat,alpha){
+lunch_model<-function(chain,number_of_repeat){
   for(i in 1:number_of_repeat){
     chain<-mean_probability(chain)
     chain<-mean_penalty(chain)
-    chain<-markov_chain(chain,alpha)
+    chain<-markov_chain(chain)
     chain<-choose_color(chain)
     chain<-rewiring(chain)
   }
   report_markov_chain(chain)
+}
+##########################################
+testF<-function(net){
+  for(i in 1:10){
+    net<-mean_penalty(net)
+  }
+  return(net)
 }
