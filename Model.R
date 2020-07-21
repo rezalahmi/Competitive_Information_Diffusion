@@ -1,8 +1,6 @@
 mean_probability<-function(chain){
   for(i in V(chain)[type==0]){
-    V(chain)[i]$mean_probability[1]<-mean(neighbors(chain,i)$action_prob[1])
-    V(chain)[i]$mean_probability[2]<-mean(neighbors(chain,i)$action_prob[2])
-    V(chain)[i]$mean_probability[3]<-mean(neighbors(chain,i)$action_prob[3])
+    V(chain)[i]$mean_probability<-mean(neighbors(chain,i)$action_prob)
   }
   return(chain)
 }
@@ -19,7 +17,7 @@ mean_penalty<-function(chain){
 ################################################
 markov_chain<-function(chain,alpha){
   for(i in V(chain)[type==0]){
-    P<-c(V(chain)[i]$action_prob_red,V(chain)[i]$action_prob_blue,V(chain)[i]$action_prob_white)
+    P<-V(net)$action_prob
     a11<-1-alpha*V(chain)[i]mean_penalty[1]
     a12<-alpha * V(chain)[i]mean_penalty[2]/2
     a13<-alpha * V(chain)[i]mean_penalty[3]/2
@@ -34,20 +32,46 @@ markov_chain<-function(chain,alpha){
     a3<-c(a31,a32,a33)
     A<-cbind(a1,a2,a3)
     P<-A * P
-    V(chain)[i]$action_prob[1]<-P[1]
-    V(chain)[i]$action_prob[2]<-P[2]
-    V(chain)[i]$action_prob[3]<-P[3]
+    V(chain)[i]$action_prob<-P
+  }
+  return(chain)
+}
+#################################################
+choose_color<-function(chain){
+  for(i in V(chain)[type==0]){
+    random_number<-sample(10000,1)/10000
+    p1<-V(chain)[i]$action_prob[1]
+    p2<-V(chain)[i]$action_prob[2]
+    if(random_number <= p1){
+      V(chain)[i]$color<-"red"
+    }
+    else if((random_number>p1) & (random_number<=p2+p1)){
+      V(chain)[i]$color<-"blue"
+    }
+    else
+      V(chain)[i]$color<-"white"
   }
   return(chain)
 }
 #################################################
 report_markov_chain<-function(chain){
-  
+  report<-data.frame(
+    nodeId = 1:vcount(chain),
+    action_prob_red=V(chain)$action_prob[1],
+    action_prob_blue=V(chain)$action_prob[2],
+    action_prob_white=V(chain)$action_prob[3],
+    mean_probability_red=V(chain)$mean_probability[1],
+    mean_probability_blue=V(chain)$mean_probability[2],
+    mean_probability_white=V(chain)$mean_probability[3],
+    mean_penalty_red=V(chain)$mean_penalty[1],
+    mean_penalty_blue=V(chain)$mean_penalty[2],
+    mean_penalty_white=V(chain)$mean_penalty[3]
+  )
+  write.csv(report,"C:\\report\\model_report.csv",row.names = FALSE)
 }
 ##################################################
-lunch_model<-function(net,number_of_repeat,alpha){
-  chain<-net
-  for(i in V(net)[type==0]){
+lunch_model<-function(chain,number_of_repeat,alpha){
+  for(i in V(net)){
     V(chain)[i]$action_prob[1]<-V(chain)[i]$action_prob_red
     V(chain)[i]$action_prob[2]<-V(chain)[i]$action_prob_blue
     V(chain)[i]$action_prob[3]<-V(chain)[i]$action_prob_white
@@ -56,6 +80,8 @@ lunch_model<-function(net,number_of_repeat,alpha){
     chain<-mean_probability(chain)
     chain<-mean_penalty(chain)
     chain<-markov_chain(chain,alpha)
+    chain<-choose_color(chain)
+    chain<-rewiring(chain)
   }
   report_markov_chain(chain)
 }
