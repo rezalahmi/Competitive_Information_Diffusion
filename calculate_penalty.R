@@ -1,7 +1,7 @@
 calculate_penalty<-function(net){
   for(i in V(net)[type==0]){
     count_AgreeNode <- length(neighbors(net,i)[color==V(net)[i]$color])
-    if(count_AgreeNode >= length(neighbors(net,i))/2)
+    if(count_AgreeNode >= length(neighbors(net,i))/3)
       V(net)[i]$penalty<-0
     else
       V(net)[i]$penalty<-1
