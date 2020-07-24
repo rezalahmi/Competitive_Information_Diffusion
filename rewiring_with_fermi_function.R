@@ -24,7 +24,7 @@ find_newFriend_based_fermi<-function(net,i){
   #calculate the fermi value for all node who agree with i or had white color
   agreeNode<-V(net)[color==V(net)[i]$color | color=="white"]
   pjj<-degree(net,agreeNode)
-  fermi<-1/(1+exp(-1*(pjj-pj)))
+  fermi<-1/(1+exp(-2*(pjj-pj)))
   fermi<-cumsum(fermi)
   fermi<-fermi/fermi[vcount(net)]
   newFriend<-length(fermi[fermi<runif(1)])
