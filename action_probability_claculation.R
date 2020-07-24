@@ -1,4 +1,4 @@
-action_prob_calculator<-function(net,a){
+action_prob_calculator<-function(net,a,b){
   for(i in V(net)[type==0]){
     p1<-V(net)[i]$action_prob_red
     p2<-V(net)[i]$action_prob_blue
@@ -23,21 +23,21 @@ action_prob_calculator<-function(net,a){
     else{
       if(V(net)[i]$color=="red"){
         V(net)[i]$count_penalty_red_action<-V(net)[i]$count_penalty_red_action + 1
-        p1<-(1-a)*p1
-        p2<-a/2+(1-a)*p2
-        p3<-a/2+(1-a)*p3
+        p1<-(1-b)*p1
+        p2<-b/2+(1-b)*p2
+        p3<-b/2+(1-b)*p3
       }
       if(V(net)[i]$color=="blue"){
         V(net)[i]$count_penalty_blue_action<-V(net)[i]$count_penalty_blue_action + 1
-        p2<-(1-a)*p2
-        p1<-a/2+(1-a)*p1
-        p3<-a/2+(1-a)*p3
+        p2<-(1-b)*p2
+        p1<-b/2+(1-b)*p1
+        p3<-b/2+(1-b)*p3
       }
       if(V(net)[i]$color=="white"){
         V(net)[i]$count_penalty_white_action<-V(net)[i]$count_penalty_white_action + 1
-        p3<-(1-a)*p3
-        p1<-a/2+(1-a)*p1
-        p2<-a/2+(1-a)*p2
+        p3<-(1-b)*p3
+        p1<-b/2+(1-b)*p1
+        p2<-b/2+(1-b)*p2
       }
     }##end of else
     V(net)[i]$action_prob_red<-p1

@@ -8,9 +8,10 @@ mean_probability<-function(chain){
 }
 ##############################################
 mean_penalty<-function(chain){
+  avgDegree<-mean(degree(chain))
   for(i in V(chain)[type==0]){
     N<-length(neighbors(chain,i))
-      for(x in 0:floor(N/4)){
+      for(x in 0:floor(N/avgDegree)){
        V(chain)[i]$mean_penalty_red<-V(chain)[i]$mean_penalty_red+choose(N,x)*V(chain)[i]$mean_probability_red^x*(1-V(chain)[i]$mean_probability_red)^(N-x)
        V(chain)[i]$mean_penalty_blue<-V(chain)[i]$mean_penalty_blue+choose(N,x)*V(chain)[i]$mean_probability_blue^x*(1-V(chain)[i]$mean_probability_blue)^(N-x)
        V(chain)[i]$mean_penalty_white<-V(chain)[i]$mean_penalty_white+choose(N,x)*V(chain)[i]$mean_probability_white^x*(1-V(chain)[i]$mean_probability_white)^(N-x)
